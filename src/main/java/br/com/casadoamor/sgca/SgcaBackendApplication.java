@@ -1,4 +1,4 @@
-package br.com.casadoamor.SGCA_backend;
+package br.com.casadoamor.sgca;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
