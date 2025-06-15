@@ -1,0 +1,59 @@
+package br.com.casadoamor.sgca.service;
+
+import br.com.casadoamor.sgca.dto.ProfissionalSaudeDto;
+import br.com.casadoamor.sgca.dto.ProfissionalSaudeRequestJson;
+import br.com.casadoamor.sgca.entity.ProfissionalSaude;
+import br.com.casadoamor.sgca.exception.ResourceNotFoundException;
+import br.com.casadoamor.sgca.mapper.ProfissionalSaudeMapper;
+import br.com.casadoamor.sgca.repository.PessoaFisicaRepository;
+import br.com.casadoamor.sgca.repository.ProfissionalSaudeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class ProfissionalSaudeServiceImpl implements ProfissionalSaudeService {
+
+    @Autowired
+    private ProfissionalSaudeRepository profissionalSaudeRepository;
+
+    @Autowired
+    private PessoaFisicaRepository pessoaFisicaRepository;
+
+    @Override
+    public ProfissionalSaudeDto createProfissionalSaude(ProfissionalSaudeRequestJson profissional) {
+        ProfissionalSaude profissionalSaude = ProfissionalSaudeMapper.toProfissionalSaude(profissional);
+
+        profissionalSaude.setPessoaFisica(this.pessoaFisicaRepository.findById(profissional.getPessoaFisica())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Pessoa Fisica com id " + profissional.getPessoaFisica() + "não encontrada!")));
+        return ProfissionalSaudeMapper.toProfissionalSaudeDto(this.profissionalSaudeRepository.save(profissionalSaude));
+    }
+
+    @Override
+    public ProfissionalSaudeDto getProfissionalSaudeById(Long id) {
+        return ProfissionalSaudeMapper.toProfissionalSaudeDto(
+                this.profissionalSaudeRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException("Profissional de Saude com id " + id + "não encontrado!"))
+        );
+    }
+
+    @Override
+    public List<ProfissionalSaudeDto> getAllProfissionalSaude() {
+        return this.profissionalSaudeRepository.findAll().stream()
+                .map(ProfissionalSaudeMapper::toProfissionalSaudeDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProfissionalSaudeDto updateProfissionalSaude(Long id, ProfissionalSaudeRequestJson profissionalSaudeDto) {
+        return null;
+    }
+
+    @Override
+    public void deleteProfissionalSaude(Long id) {
+        this.profissionalSaudeRepository.deleteById(id);
+    }
+}
