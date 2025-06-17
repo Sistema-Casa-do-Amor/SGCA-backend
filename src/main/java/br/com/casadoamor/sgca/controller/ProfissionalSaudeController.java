@@ -1,6 +1,5 @@
 package br.com.casadoamor.sgca.controller;
 
-import br.com.casadoamor.sgca.dto.PessoaFisicaDto;
 import br.com.casadoamor.sgca.dto.ProfissionalSaudeDto;
 import br.com.casadoamor.sgca.dto.ProfissionalSaudeRequestJson;
 import br.com.casadoamor.sgca.service.ProfissionalSaudeService;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/1.0")
+@RequestMapping(path = "/api/1.0", produces = "application/json;charset=UTF-8")
 public class ProfissionalSaudeController {
 
     @Autowired

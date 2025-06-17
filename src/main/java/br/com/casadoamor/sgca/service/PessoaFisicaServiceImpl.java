@@ -19,8 +19,8 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
 
     @Override
     public PessoaFisicaDto createPessoaFisica(PessoaFisicaDto pessoaFisicaDto) {
-        pessoaFisicaDto.setCpf(pessoaFisicaDto.getCpf().replaceAll(".", "").replaceAll("-", ""));
-        pessoaFisicaDto.getEndereco().setCep(pessoaFisicaDto.getEndereco().getCep().replaceAll("-", ""));
+        pessoaFisicaDto.setCpf(pessoaFisicaDto.getCpf().replace(".", "").replace("-", ""));
+        pessoaFisicaDto.getEndereco().setCep(pessoaFisicaDto.getEndereco().getCep().replace("-", ""));
 
         PessoaFisica pessoa = PessoaFisicaMapper.toPessoaFisica(pessoaFisicaDto);
         return PessoaFisicaMapper.toPessoaFisicaDto(this.pessoaFisicaRepository.save(pessoa));
@@ -43,7 +43,8 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
 
     @Override
     public PessoaFisicaDto getPessoaFisicaByCpf(String cpf) {
-        return PessoaFisicaMapper.toPessoaFisicaDto(this.pessoaFisicaRepository.findByCpf(cpf)
+        String cpfFormatted = cpf.replace(".", "").replace("-", "");
+        return PessoaFisicaMapper.toPessoaFisicaDto(this.pessoaFisicaRepository.findByCpf(cpfFormatted)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa Fisica com CPF " + cpf + " não encontrada!")));
     }
 

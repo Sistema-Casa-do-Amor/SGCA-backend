@@ -13,7 +13,7 @@ public class ProfissionalSaudeMapper {
                 profissional.getDocumento(),
                 profissional.getUfDocumento(),
                 profissional.getEspecialidade(),
-                profissional.getPessoaFisica()
+                PessoaFisicaMapper.toPessoaFisicaDto(profissional.getPessoaFisica())
         );
     }
 
@@ -24,7 +24,7 @@ public class ProfissionalSaudeMapper {
                 profissional.getDocumento(),
                 profissional.getUfDocumento(),
                 profissional.getEspecialidade(),
-                profissional.getPessoaFisica()
+                PessoaFisicaMapper.toPessoaFisica(profissional.getPessoaFisica())
         );
     }
 

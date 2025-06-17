@@ -1,6 +1,5 @@
 package br.com.casadoamor.sgca.dto;
 
-import br.com.casadoamor.sgca.entity.PessoaFisica;
 import br.com.casadoamor.sgca.entity.TipoDocumentoProfissionalSaudeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +17,6 @@ public class ProfissionalSaudeDto {
     private String documento;
     private String ufDocumento;
     private String especialidade;
-    private PessoaFisica pessoaFisica;
+    private PessoaFisicaDto pessoaFisica;
 }
 

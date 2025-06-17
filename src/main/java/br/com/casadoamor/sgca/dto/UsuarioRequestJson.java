@@ -9,11 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioDto {
-
+public class UsuarioRequestJson {
     private Long id;
     private String cpf;
     private String senha;
     private boolean ativo = true;
-    private PessoaFisicaDto pessoaFisica;
+    private Long pessoaFisica;
 }

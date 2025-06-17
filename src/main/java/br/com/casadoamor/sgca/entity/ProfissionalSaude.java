@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,9 +18,11 @@ public class ProfissionalSaude {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private TipoDocumentoProfissionalSaudeEnum tipo;
+    @Column(nullable = false)
     private String documento;
-    @Column(length = 2)
+    @Column(length = 2, nullable = false)
     private String ufDocumento;
     private String especialidade;
     @OneToOne(cascade = CascadeType.ALL)

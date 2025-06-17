@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/1.0")
+@RequestMapping(path = "/api/1.0", produces = "application/json;charset=UTF-8")
 public class PessoaFisicaController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class PessoaFisicaController {
         return new ResponseEntity<>(this.pessoaFisicaService.findByNomeContaining(nome), HttpStatus.OK);
     }
 
-    @GetMapping(path="/pessoa-fisica/{cpf:[0-9.]+}/cpf")
+    @GetMapping(path="/pessoa-fisica/{cpf:[0-9.-]+}/cpf")
     public ResponseEntity<PessoaFisicaDto> getPessoaFisicaByCpf(@PathVariable String cpf) {
         return new ResponseEntity<>(this.pessoaFisicaService.getPessoaFisicaByCpf(cpf), HttpStatus.OK);
     }
@@ -41,7 +41,7 @@ public class PessoaFisicaController {
         return new ResponseEntity<>(this.pessoaFisicaService.getAllPessoaFisica(), HttpStatus.OK);
     }
 
-    @PatchMapping(path="/pessoa-fisica/{id}")
+    @PutMapping(path="/pessoa-fisica/{id}")
     public ResponseEntity<PessoaFisicaDto> updatePessoaFisica(
             @PathVariable Long id,
             @RequestBody PessoaFisicaDto pessoaFisicaDto

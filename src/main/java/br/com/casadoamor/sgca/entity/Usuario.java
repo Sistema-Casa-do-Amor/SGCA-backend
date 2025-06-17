@@ -18,8 +18,12 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String cpf;
-    private String email;
+    @Column(nullable = false)
     private String senha;
-    private boolean admin = false;
+    private boolean ativo = true;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_fisica_id")
+    private PessoaFisica pessoaFisica;
 }
