@@ -25,7 +25,7 @@ public class CidController {
     }
 
     @GetMapping(path="/cid/{descricao}/descricao")
-    public ResponseEntity<CidDto> getUsuarioByCpf(@PathVariable String descricao) {
+    public ResponseEntity<List<CidDto>> getCidByDesc(@PathVariable String descricao) {
         return new ResponseEntity<>(this.cidService.getCidByDescricao(descricao), HttpStatus.OK);
     }
 

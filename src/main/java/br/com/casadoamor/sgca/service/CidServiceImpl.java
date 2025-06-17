@@ -18,6 +18,7 @@ public class CidServiceImpl implements CidService {
 
     @Override
     public List<CidDto> getCidById(String id) {
+        id = id.replace(".", "");
         return this.cidRepository.findCidBySubcatContaining(id).stream()
                 .map(CidMapper::toCidDto).collect(Collectors.toList());
     }
@@ -31,6 +32,6 @@ public class CidServiceImpl implements CidService {
     @Override
     public List<CidDto> getAllCid() {
         return this.cidRepository.findAll().stream()
-                .map(CidMapper::toCidDto).collect(Collectors.toList());;
+                .map(CidMapper::toCidDto).collect(Collectors.toList());
     }
 }
