@@ -50,12 +50,4 @@ public class UsuarioController {
         this.usuarioService.deleteUsuario(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    private UsuarioDto toUsuarioDto(String cpf, String senha, boolean ativo) {
-        UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setCpf(cpf);
-        usuarioDto.setSenha(senha);
-        usuarioDto.setAtivo(ativo);
-        return usuarioDto;
-    }
 }
