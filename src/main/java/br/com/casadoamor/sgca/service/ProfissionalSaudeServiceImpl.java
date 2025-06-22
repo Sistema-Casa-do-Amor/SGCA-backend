@@ -4,6 +4,7 @@ import br.com.casadoamor.sgca.dto.ProfissionalSaudeDto;
 import br.com.casadoamor.sgca.dto.ProfissionalSaudeRequestJson;
 import br.com.casadoamor.sgca.entity.ProfissionalSaude;
 import br.com.casadoamor.sgca.exception.ResourceNotFoundException;
+import br.com.casadoamor.sgca.mapper.PessoaFisicaMapper;
 import br.com.casadoamor.sgca.mapper.ProfissionalSaudeMapper;
 import br.com.casadoamor.sgca.repository.PessoaFisicaRepository;
 import br.com.casadoamor.sgca.repository.ProfissionalSaudeRepository;
@@ -49,7 +50,17 @@ public class ProfissionalSaudeServiceImpl implements ProfissionalSaudeService {
 
     @Override
     public ProfissionalSaudeDto updateProfissionalSaude(Long id, ProfissionalSaudeRequestJson profissionalSaudeDto) {
-        return null;
+        ProfissionalSaude profissional = this.profissionalSaudeRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Profissional de Saude com id " + id + "não encontrado!"));
+        profissional.setTipo(profissionalSaudeDto.getTipo());
+        profissional.setDocumento(profissionalSaudeDto.getDocumento());
+        profissional.setUfDocumento(profissionalSaudeDto.getUfDocumento());
+        profissional.setEspecialidade(profissionalSaudeDto.getEspecialidade());
+        profissional.setPessoaFisica(this.pessoaFisicaRepository.findById(profissionalSaudeDto.getPessoaFisica())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Pessoa Fisica com id " + profissionalSaudeDto.getPessoaFisica() + "não encontrada!")));
+        return ProfissionalSaudeMapper.toProfissionalSaudeDto(profissional);
     }
 
     @Override

@@ -59,7 +59,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioDto updateUsuario(Long id, UsuarioDto usuarioDto) {
-        return null;
+        Usuario user = this.usuarioRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Usuário com id " + id + "não encontrado!"));
+        user.setCpf(usuarioDto.getCpf());
+        user.setSenha(usuarioDto.getSenha());
+        user.setAtivo(usuarioDto.isAtivo());
+        user.setPessoaFisica(PessoaFisicaMapper.toPessoaFisica(usuarioDto.getPessoaFisica()));
+        return UsuarioMapper.toUsuarioDto(this.usuarioRepository.save(user));
     }
 
     @Override
