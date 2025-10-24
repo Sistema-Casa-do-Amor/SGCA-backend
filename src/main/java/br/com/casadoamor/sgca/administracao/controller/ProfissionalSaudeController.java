@@ -1,6 +1,6 @@
 package br.com.casadoamor.sgca.administracao.controller;
 
-import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDto;
+import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDTO;
 import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeRequestJson;
 import br.com.casadoamor.sgca.administracao.service.ProfissionalSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +18,22 @@ public class ProfissionalSaudeController {
     private ProfissionalSaudeService profissionalSaudeService;
 
     @PostMapping(path="/profissional-saude")
-    public ResponseEntity<ProfissionalSaudeDto> createProfissionalSaude(@RequestBody ProfissionalSaudeRequestJson profissionalSaude) {
+    public ResponseEntity<ProfissionalSaudeDTO> createProfissionalSaude(@RequestBody ProfissionalSaudeRequestJson profissionalSaude) {
         return new ResponseEntity<>(this.profissionalSaudeService.createProfissionalSaude(profissionalSaude), HttpStatus.CREATED);
     }
 
     @GetMapping(path="/profissional-saude/{id}")
-    public ResponseEntity<ProfissionalSaudeDto> getProfissionalSaudeById(@PathVariable Long id) {
+    public ResponseEntity<ProfissionalSaudeDTO> getProfissionalSaudeById(@PathVariable Long id) {
         return new ResponseEntity<>(this.profissionalSaudeService.getProfissionalSaudeById(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/profissional-saude")
-    public ResponseEntity<List<ProfissionalSaudeDto>> getAllProfissionalSaude() {
+    public ResponseEntity<List<ProfissionalSaudeDTO>> getAllProfissionalSaude() {
         return new ResponseEntity<>(this.profissionalSaudeService.getAllProfissionalSaude(), HttpStatus.OK);
     }
 
     @PutMapping(path="/profissional-saude/{id}")
-    public ResponseEntity<ProfissionalSaudeDto> updateProfissionalSaude(
+    public ResponseEntity<ProfissionalSaudeDTO> updateProfissionalSaude(
             @PathVariable Long id,
             @RequestBody ProfissionalSaudeRequestJson profissionalSaude
     ){
@@ -41,8 +41,8 @@ public class ProfissionalSaudeController {
     }
 
     @DeleteMapping(path="/profissional-saude/{id}")
-    public ResponseEntity<ProfissionalSaudeDto> deleteProfissionalSaude(@PathVariable Long id) {
+    public ResponseEntity<ProfissionalSaudeDTO> deleteProfissionalSaude(@PathVariable Long id) {
         this.profissionalSaudeService.deleteProfissionalSaude(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

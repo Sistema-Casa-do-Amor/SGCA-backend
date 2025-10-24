@@ -1,9 +1,9 @@
 package br.com.casadoamor.sgca.administracao.service;
 
-import br.com.casadoamor.sgca.administracao.dto.UsuarioDto;
+import br.com.casadoamor.sgca.administracao.dto.UsuarioDTO;
 import br.com.casadoamor.sgca.administracao.dto.UsuarioRequestJson;
 import br.com.casadoamor.sgca.administracao.entity.Usuario;
-import br.com.casadoamor.sgca.administracao.exception.ResourceNotFoundException;
+import br.com.casadoamor.sgca.exception.ResourceNotFoundException;
 import br.com.casadoamor.sgca.administracao.mapper.PessoaFisicaMapper;
 import br.com.casadoamor.sgca.administracao.mapper.UsuarioMapper;
 import br.com.casadoamor.sgca.administracao.repository.PessoaFisicaRepository;
@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private PessoaFisicaRepository pessoaFisicaRepository;
 
     @Override
-    public UsuarioDto createUsuario(UsuarioRequestJson requestJson) {
+    public UsuarioDTO createUsuario(UsuarioRequestJson requestJson) {
         requestJson.setCpf(requestJson.getCpf().replace(".", "").replace("-", ""));
         Usuario usuario = UsuarioMapper.toUsuario(requestJson);
 
@@ -35,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDto getUsuarioById(Long id) {
+    public UsuarioDTO getUsuarioById(Long id) {
         return UsuarioMapper.toUsuarioDto(
                 this.usuarioRepository.findById(id)
                         .orElseThrow(() ->
@@ -44,20 +44,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDto getUsuarioByCpf(String cpf) {
+    public UsuarioDTO getUsuarioByCpf(String cpf) {
         String cpfFormatted = cpf.replace(".", "").replace("-", "");
         return UsuarioMapper.toUsuarioDto(this.usuarioRepository.findByCpf(cpfFormatted)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário com CPF " + cpf + " não encontrada!")));
     }
 
     @Override
-    public List<UsuarioDto> getAllUsuario() {
+    public List<UsuarioDTO> getAllUsuario() {
         return this.usuarioRepository.findAll().stream()
                 .map(UsuarioMapper::toUsuarioDto).collect(Collectors.toList());
     }
 
     @Override
-    public UsuarioDto updateUsuario(Long id, UsuarioDto usuarioDto) {
+    public UsuarioDTO updateUsuario(Long id, UsuarioDTO usuarioDto) {
         Usuario user = this.usuarioRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Usuário com id " + id + "não encontrado!"));

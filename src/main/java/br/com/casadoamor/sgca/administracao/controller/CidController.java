@@ -1,6 +1,6 @@
 package br.com.casadoamor.sgca.administracao.controller;
 
-import br.com.casadoamor.sgca.administracao.dto.CidDto;
+import br.com.casadoamor.sgca.administracao.dto.CidDTO;
 import br.com.casadoamor.sgca.administracao.service.CidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,17 +20,17 @@ public class CidController {
     private CidService cidService;
 
     @GetMapping(path="/cid/{id:[a-zA-Z0-9.]+}")
-    public ResponseEntity<List<CidDto>> getCidById(@PathVariable String id) {
+    public ResponseEntity<List<CidDTO>> getCidById(@PathVariable String id) {
         return new ResponseEntity<>(this.cidService.getCidById(id), HttpStatus.OK);
     }
 
     @GetMapping(path="/cid/{descricao}/descricao")
-    public ResponseEntity<List<CidDto>> getCidByDesc(@PathVariable String descricao) {
+    public ResponseEntity<List<CidDTO>> getCidByDesc(@PathVariable String descricao) {
         return new ResponseEntity<>(this.cidService.getCidByDescricao(descricao), HttpStatus.OK);
     }
 
     @GetMapping(path = "/cid")
-    public ResponseEntity<List<CidDto>> getAllCid() {
+    public ResponseEntity<List<CidDTO>> getAllCid() {
         return new ResponseEntity<>(this.cidService.getAllCid(), HttpStatus.OK);
     }
 }

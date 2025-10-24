@@ -1,13 +1,13 @@
 package br.com.casadoamor.sgca.administracao.mapper;
 
-import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDto;
+import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDTO;
 import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeRequestJson;
 import br.com.casadoamor.sgca.administracao.entity.ProfissionalSaude;
 
 public class ProfissionalSaudeMapper {
 
-    public static ProfissionalSaudeDto toProfissionalSaudeDto(ProfissionalSaude profissional) {
-        return new ProfissionalSaudeDto(
+    public static ProfissionalSaudeDTO toProfissionalSaudeDto(ProfissionalSaude profissional) {
+        return new ProfissionalSaudeDTO(
                 profissional.getId(),
                 profissional.getTipo(),
                 profissional.getDocumento(),
@@ -17,7 +17,7 @@ public class ProfissionalSaudeMapper {
         );
     }
 
-    public static ProfissionalSaude toProfissionalSaude(ProfissionalSaudeDto profissional) {
+    public static ProfissionalSaude toProfissionalSaude(ProfissionalSaudeDTO profissional) {
         return new ProfissionalSaude(
                 profissional.getId(),
                 profissional.getTipo(),

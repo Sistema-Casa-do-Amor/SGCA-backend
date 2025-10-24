@@ -1,9 +1,9 @@
 package br.com.casadoamor.sgca.administracao.service;
 
-import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDto;
+import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeDTO;
 import br.com.casadoamor.sgca.administracao.dto.ProfissionalSaudeRequestJson;
 import br.com.casadoamor.sgca.administracao.entity.ProfissionalSaude;
-import br.com.casadoamor.sgca.administracao.exception.ResourceNotFoundException;
+import br.com.casadoamor.sgca.exception.ResourceNotFoundException;
 import br.com.casadoamor.sgca.administracao.mapper.ProfissionalSaudeMapper;
 import br.com.casadoamor.sgca.administracao.repository.PessoaFisicaRepository;
 import br.com.casadoamor.sgca.administracao.repository.ProfissionalSaudeRepository;
@@ -23,7 +23,7 @@ public class ProfissionalSaudeServiceImpl implements ProfissionalSaudeService {
     private PessoaFisicaRepository pessoaFisicaRepository;
 
     @Override
-    public ProfissionalSaudeDto createProfissionalSaude(ProfissionalSaudeRequestJson profissional) {
+    public ProfissionalSaudeDTO createProfissionalSaude(ProfissionalSaudeRequestJson profissional) {
         ProfissionalSaude profissionalSaude = ProfissionalSaudeMapper.toProfissionalSaude(profissional);
 
         profissionalSaude.setPessoaFisica(this.pessoaFisicaRepository.findById(profissional.getPessoaFisica())
@@ -33,7 +33,7 @@ public class ProfissionalSaudeServiceImpl implements ProfissionalSaudeService {
     }
 
     @Override
-    public ProfissionalSaudeDto getProfissionalSaudeById(Long id) {
+    public ProfissionalSaudeDTO getProfissionalSaudeById(Long id) {
         return ProfissionalSaudeMapper.toProfissionalSaudeDto(
                 this.profissionalSaudeRepository.findById(id)
                         .orElseThrow(() ->
@@ -42,13 +42,13 @@ public class ProfissionalSaudeServiceImpl implements ProfissionalSaudeService {
     }
 
     @Override
-    public List<ProfissionalSaudeDto> getAllProfissionalSaude() {
+    public List<ProfissionalSaudeDTO> getAllProfissionalSaude() {
         return this.profissionalSaudeRepository.findAll().stream()
                 .map(ProfissionalSaudeMapper::toProfissionalSaudeDto).collect(Collectors.toList());
     }
 
     @Override
-    public ProfissionalSaudeDto updateProfissionalSaude(Long id, ProfissionalSaudeRequestJson profissionalSaudeDto) {
+    public ProfissionalSaudeDTO updateProfissionalSaude(Long id, ProfissionalSaudeRequestJson profissionalSaudeDto) {
         ProfissionalSaude profissional = this.profissionalSaudeRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Profissional de Saude com id " + id + "não encontrado!"));

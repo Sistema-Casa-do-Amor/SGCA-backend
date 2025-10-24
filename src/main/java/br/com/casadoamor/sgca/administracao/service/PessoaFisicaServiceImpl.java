@@ -1,8 +1,8 @@
 package br.com.casadoamor.sgca.administracao.service;
 
-import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDto;
+import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDTO;
 import br.com.casadoamor.sgca.administracao.entity.PessoaFisica;
-import br.com.casadoamor.sgca.administracao.exception.ResourceNotFoundException;
+import br.com.casadoamor.sgca.exception.ResourceNotFoundException;
 import br.com.casadoamor.sgca.administracao.mapper.PessoaFisicaMapper;
 import br.com.casadoamor.sgca.administracao.repository.PessoaFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     private PessoaFisicaRepository pessoaFisicaRepository;
 
     @Override
-    public PessoaFisicaDto createPessoaFisica(PessoaFisicaDto pessoaFisicaDto) {
+    public PessoaFisicaDTO createPessoaFisica(PessoaFisicaDTO pessoaFisicaDto) {
         pessoaFisicaDto.setCpf(pessoaFisicaDto.getCpf().replace(".", "").replace("-", ""));
         pessoaFisicaDto.getEndereco().setCep(pessoaFisicaDto.getEndereco().getCep().replace("-", ""));
 
@@ -27,7 +27,7 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     }
 
     @Override
-    public PessoaFisicaDto getPessoaFisicaById(Long id) {
+    public PessoaFisicaDTO getPessoaFisicaById(Long id) {
         return PessoaFisicaMapper.toPessoaFisicaDto(
                 this.pessoaFisicaRepository.findById(id)
                         .orElseThrow(() ->
@@ -36,25 +36,25 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     }
 
     @Override
-    public List<PessoaFisicaDto> getAllPessoaFisica() {
+    public List<PessoaFisicaDTO> getAllPessoaFisica() {
         return this.pessoaFisicaRepository.findAll()
                 .stream().map(PessoaFisicaMapper::toPessoaFisicaDto).collect(Collectors.toList());
     }
 
     @Override
-    public PessoaFisicaDto getPessoaFisicaByCpf(String cpf) {
+    public PessoaFisicaDTO getPessoaFisicaByCpf(String cpf) {
         String cpfFormatted = cpf.replace(".", "").replace("-", "");
         return PessoaFisicaMapper.toPessoaFisicaDto(this.pessoaFisicaRepository.findByCpf(cpfFormatted)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa Fisica com CPF " + cpf + " não encontrada!")));
     }
 
-    public List<PessoaFisicaDto> findByNomeContaining(String nome) {
+    public List<PessoaFisicaDTO> findByNomeContaining(String nome) {
         return this.pessoaFisicaRepository.findByNomeContaining(nome).stream()
                 .map(PessoaFisicaMapper::toPessoaFisicaDto).collect(Collectors.toList());
     }
 
     @Override
-    public PessoaFisicaDto updatePessoaFisica(Long id, PessoaFisicaDto pessoaFisicaDto) {
+    public PessoaFisicaDTO updatePessoaFisica(Long id, PessoaFisicaDTO pessoaFisicaDto) {
         PessoaFisica pessoa = this.pessoaFisicaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa Fisica com id " + id + " não encontrada!"));
         pessoa.setNome(pessoaFisicaDto.getNome());

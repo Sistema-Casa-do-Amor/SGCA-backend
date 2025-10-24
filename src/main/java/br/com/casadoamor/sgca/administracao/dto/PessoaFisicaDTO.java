@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaFisicaDto {
+public class PessoaFisicaDTO {
 
     private Long id;
     private String nome;
@@ -24,5 +24,5 @@ public class PessoaFisicaDto {
     private String profissao;
     private String telefone;
     private String email;
-    private EnderecoDto endereco;
+    private EnderecoDTO endereco;
 }

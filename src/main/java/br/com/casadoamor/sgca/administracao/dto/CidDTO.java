@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CidDto {
+public class CidDTO {
     private String subcat;
     private String descricao;
     private String descrabrev;

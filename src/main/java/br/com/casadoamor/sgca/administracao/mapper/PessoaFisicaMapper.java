@@ -1,14 +1,14 @@
 package br.com.casadoamor.sgca.administracao.mapper;
 
-import br.com.casadoamor.sgca.administracao.dto.EnderecoDto;
-import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDto;
+import br.com.casadoamor.sgca.administracao.dto.EnderecoDTO;
+import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDTO;
 import br.com.casadoamor.sgca.administracao.entity.Endereco;
 import br.com.casadoamor.sgca.administracao.entity.PessoaFisica;
 
 public class PessoaFisicaMapper {
 
-    public static PessoaFisicaDto toPessoaFisicaDto(PessoaFisica pessoaFisica) {
-        return new PessoaFisicaDto(
+    public static PessoaFisicaDTO toPessoaFisicaDto(PessoaFisica pessoaFisica) {
+        return new PessoaFisicaDTO(
                 pessoaFisica.getId(),
                 pessoaFisica.getNome(),
                 pessoaFisica.getDataNascimento(),
@@ -22,7 +22,7 @@ public class PessoaFisicaMapper {
         );
     }
 
-    public static PessoaFisica toPessoaFisica(PessoaFisicaDto pessoaFisicaDto) {
+    public static PessoaFisica toPessoaFisica(PessoaFisicaDTO pessoaFisicaDto) {
         return new PessoaFisica(
                 pessoaFisicaDto.getId(),
                 pessoaFisicaDto.getNome(),
@@ -37,8 +37,8 @@ public class PessoaFisicaMapper {
         );
     }
 
-    public static EnderecoDto toEnderecoDto(Endereco endereco) {
-        return new EnderecoDto(
+    public static EnderecoDTO toEnderecoDto(Endereco endereco) {
+        return new EnderecoDTO(
                 endereco.getEndereco(),
                 endereco.getBairro(),
                 endereco.getNumero(),
@@ -49,7 +49,7 @@ public class PessoaFisicaMapper {
         );
     }
 
-    public static Endereco toEndereco(EnderecoDto endereco) {
+    public static Endereco toEndereco(EnderecoDTO endereco) {
         return new Endereco(
                 endereco.getEndereco(),
                 endereco.getBairro(),

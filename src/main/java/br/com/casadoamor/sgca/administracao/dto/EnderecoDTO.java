@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnderecoDto {
+public class EnderecoDTO {
 
     private String endereco;
     private String bairro;

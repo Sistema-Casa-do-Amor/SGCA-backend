@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProfissionalSaudeDto {
+public class ProfissionalSaudeDTO {
 
     private Long id;
     private TipoDocumentoProfissionalSaudeEnum tipo;
     private String documento;
     private String ufDocumento;
     private String especialidade;
-    private PessoaFisicaDto pessoaFisica;
+    private PessoaFisicaDTO pessoaFisica;
 }
 

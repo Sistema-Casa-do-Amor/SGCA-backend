@@ -2,22 +2,17 @@ package br.com.casadoamor.sgca.prontuario.entity;
 
 import br.com.casadoamor.sgca.administracao.entity.PessoaFisica;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data
 @Entity
-@Table(name = "pront_geral")
-public class ProntuarioGeral {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long os;
+public class ProntuarioGeral extends RegistroClinico {
 
     private Date dataChegada;
 
@@ -25,8 +20,10 @@ public class ProntuarioGeral {
 
     private String motivoSaida;
 
-    @OneToOne
-    @JoinColumn(name = "paciente_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "paciente_id",  nullable = false)
     private PessoaFisica paciente;
 
+    @OneToMany(mappedBy = "prontuarioGeral", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prontuario> prontuarios = new ArrayList<>();
 }

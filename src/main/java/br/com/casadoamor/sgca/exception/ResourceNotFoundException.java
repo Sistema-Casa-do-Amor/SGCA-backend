@@ -1,4 +1,4 @@
-package br.com.casadoamor.sgca.administracao.exception;
+package br.com.casadoamor.sgca.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

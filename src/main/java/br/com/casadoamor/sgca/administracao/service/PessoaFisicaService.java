@@ -1,16 +1,16 @@
 package br.com.casadoamor.sgca.administracao.service;
 
-import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDto;
+import br.com.casadoamor.sgca.administracao.dto.PessoaFisicaDTO;
 
 import java.util.List;
 
 public interface PessoaFisicaService {
 
-    PessoaFisicaDto createPessoaFisica(PessoaFisicaDto pessoaFisicaDto);
-    PessoaFisicaDto getPessoaFisicaById(Long id);
-    List<PessoaFisicaDto> getAllPessoaFisica();
-    PessoaFisicaDto updatePessoaFisica(Long id, PessoaFisicaDto pessoaFisicaDto);
+    PessoaFisicaDTO createPessoaFisica(PessoaFisicaDTO pessoaFisicaDto);
+    PessoaFisicaDTO getPessoaFisicaById(Long id);
+    List<PessoaFisicaDTO> getAllPessoaFisica();
+    PessoaFisicaDTO updatePessoaFisica(Long id, PessoaFisicaDTO pessoaFisicaDto);
     void deletePessoaFisica(Long id);
-    PessoaFisicaDto getPessoaFisicaByCpf(String cpf);
-    List<PessoaFisicaDto> findByNomeContaining(String nome);
+    PessoaFisicaDTO getPessoaFisicaByCpf(String cpf);
+    List<PessoaFisicaDTO> findByNomeContaining(String nome);
 }

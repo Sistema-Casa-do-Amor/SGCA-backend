@@ -1,13 +1,13 @@
 package br.com.casadoamor.sgca.administracao.mapper;
 
-import br.com.casadoamor.sgca.administracao.dto.UsuarioDto;
+import br.com.casadoamor.sgca.administracao.dto.UsuarioDTO;
 import br.com.casadoamor.sgca.administracao.dto.UsuarioRequestJson;
 import br.com.casadoamor.sgca.administracao.entity.Usuario;
 
 public class UsuarioMapper {
 
-    public static UsuarioDto toUsuarioDto(Usuario usuario) {
-        return new UsuarioDto(
+    public static UsuarioDTO toUsuarioDto(Usuario usuario) {
+        return new UsuarioDTO(
                 usuario.getId(),
                 usuario.getCpf(),
                 usuario.getSenha(),
@@ -16,7 +16,7 @@ public class UsuarioMapper {
         );
     }
 
-    public static Usuario toUsuario(UsuarioDto usuario) {
+    public static Usuario toUsuario(UsuarioDTO usuario) {
         return new Usuario(
                 usuario.getId(),
                 usuario.getCpf(),
